@@ -15,18 +15,26 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
-import organisation.views
-
-router = routers.DefaultRouter()
-router.register(r'organisations', organisation.views.OrganisationViewSet)
+import charity.views
 
 urlpatterns = [
-    # Wire up our API using automatic URL routing.
-    url(r'^', include(router.urls)),
+    url(r'^charities/organisations$', charity.views.OrganisationList.as_view()),
+    url(r'^charities/organisations/(?P<pk>[0-9]+)$', charity.views.OrganisationDetail.as_view(), name='organisation-detail'),
+    url(r'^charities/clients$', charity.views.ClientList.as_view()),
+    url(r'^charities/clients/(?P<pk>[0-9]+)$', charity.views.ClientDetail.as_view(), name='client-detail'),
+    url(r'^charities/services$', charity.views.ServiceList.as_view()),
+    url(r'^charities/services/(?P<pk>[0-9]+)$', charity.views.ServiceDetail.as_view(), name='service-detail'),
+    url(r'^charities/classifications$', charity.views.ClassificationList.as_view()),
+    url(r'^charities/classifications/(?P<pk>[0-9]+)$', charity.views.ClassificationDetail.as_view(), name='classification-detail'),
 
     # Additionally, we include login URLs for the browsable API.
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
+
+

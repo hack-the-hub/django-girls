@@ -13,6 +13,9 @@ class Organisation(models.Model):
     email = models.CharField(max_length=255, default='')
     phone = models.CharField(max_length=255, default='')
     mission = models.TextField(default='')
+    clients = models.ManyToManyField('Client')
+    services = models.ManyToManyField('Service')
+    classifications = models.ManyToManyField('Classification')
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
@@ -25,14 +28,8 @@ class Client(models.Model):
     code = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=100)
 
-
-class OrganisationClient(models.Model):
-    """Mapping table of Organisation to Client Types"""
-    organisation = models.ForeignKey(Organisation)
-    client = models.ForeignKey(Client)
-
-    class Meta:
-        unique_together = (("organisation", "client"), )
+    def __str__(self):
+        return self.description
 
 
 class Service(models.Model):
@@ -40,14 +37,8 @@ class Service(models.Model):
     code = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=100)
 
-
-class OrganisationService(models.Model):
-    """Mapping table of Organisation to Services"""
-    organisation = models.ForeignKey(Organisation)
-    service = models.ForeignKey(Service)
-
-    class Meta:
-        unique_together = (("organisation", "service"), )
+    def __str__(self):
+        return self.description
 
 
 class Classification(models.Model):
@@ -55,14 +46,8 @@ class Classification(models.Model):
     code = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=100)
 
-
-class OrganisationClassification(models.Model):
-    """Mapping table of Organisation to Classifications"""
-    organisation = models.ForeignKey(Organisation)
-    classification = models.ForeignKey(Classification)
-
-    class Meta:
-        unique_together = (("organisation", "classification"), )
+    def __str__(self):
+        return self.description
 
 
 class Owners(models.Model):
