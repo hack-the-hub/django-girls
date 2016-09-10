@@ -11,6 +11,7 @@ class OrganisationList(generics.ListCreateAPIView):
 class OrganisationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Organisation.objects.all()
     serializer_class = OrganisationSerializer
+    lookup_field = "charity_id"
 
 
 class ClientList(generics.ListCreateAPIView):
