@@ -16,6 +16,9 @@ class Organisation(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Client(models.Model):
     """Reference table of the types of client an organisation is trying to help"""

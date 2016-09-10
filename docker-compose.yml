@@ -1,0 +1,12 @@
+data:
+    image: postgres:9.4
+
+web:
+    build: .
+    command: make runserver
+    volumes:
+        - .:/volman
+    ports:
+        - "8000:8000"
+    links:
+        - data
