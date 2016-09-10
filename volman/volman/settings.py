@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'charity'
+    'charity',
+    'volunteer',
 ]
 
 MIDDLEWARE_CLASSES = [

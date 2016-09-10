@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework.urlpatterns import format_suffix_patterns
 
 import charity.views
+import volunteer.views
 
 urlpatterns = [
     url(r'^charities/organisations$', charity.views.OrganisationList.as_view()),
@@ -28,6 +29,10 @@ urlpatterns = [
     url(r'^charities/services/(?P<pk>[0-9]+)$', charity.views.ServiceDetail.as_view(), name='service-detail'),
     url(r'^charities/classifications$', charity.views.ClassificationList.as_view()),
     url(r'^charities/classifications/(?P<pk>[0-9]+)$', charity.views.ClassificationDetail.as_view(), name='classification-detail'),
+
+    url(r'^volunteers$', volunteer.views.ProfileList.as_view()),
+    url(r'^volunteers/(?P<pk>[0-9]+)$', volunteer.views.ProfileDetail.as_view(),
+        name='profile-detail'),
 
     # Additionally, we include login URLs for the browsable API.
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
