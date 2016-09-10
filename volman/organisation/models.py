@@ -1,16 +1,17 @@
 from django.conf import settings
 from django.db import models
 
+
 class Organisation(models.Model):
     """An entity which offers charitable services"""
-    charity_id = models.CharField(length=50, help="Charity ID",
+    charity_id = models.CharField(max_length=50, help="Charity ID",
                     unique=True, default='')
-    name = models.CharField(length=50, help="Name of the Organisation")
+    name = models.CharField(max_length=50, help="Name of the Organisation")
     registered = models.DateField(help="Date Charity was registered")
     address = models.TextField(help="Public address")
-    website = models.CharField(length=255, default='')
-    email = models.CharField(length=255, default='')
-    phone = models.CharField(length=255, default='')
+    website = models.CharField(max_length=255, default='')
+    email = models.CharField(max_length=255, default='')
+    phone = models.CharField(max_length=255, default='')
     mission = models.TextField(default='')
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -18,8 +19,8 @@ class Organisation(models.Model):
 
 class Client(models.Model):
     """Reference table of the types of client an organisation is trying to help"""
-    code = models.CharField(length=100, unique=True)
-    description = models.CharField(length=100)
+    code = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=100)
 
 
 class OrganisationClient(models.Models):
@@ -33,8 +34,8 @@ class OrganisationClient(models.Models):
 
 class Service(models.Model):
     """Reference table of the types of people an organisation is trying to help"""
-    code = models.CharField(length=100, unique=True)
-    description = models.CharField(length=100)
+    code = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=100)
 
 
 class OrganisationService(models.Model):
@@ -48,8 +49,8 @@ class OrganisationService(models.Model):
 
 class Classification(models.Model):
     """Reference table of Organisation classifications"""
-    code = models.CharField(length=100, unique=True)
-    description = models.CharField(length=100)
+    code = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=100)
 
 
 class OrganisationClassification(models.Model):
