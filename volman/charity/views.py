@@ -28,8 +28,8 @@ class OrganisationsByClient(generics.ListAPIView):
     serializer_class = OrganisationSerializer
 
     def get_queryset(self):
-        client = self.kwargs['client_id']
-        return Organisation.objects.filter(clients__id=client)
+        client = self.kwargs['code']
+        return Organisation.objects.filter(clients__code=client)
 
 
 class ClassificationList(generics.ListCreateAPIView):

@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^charities/clients$', charity.views.ClientList.as_view()),
     url(r'^charities/clients/(?P<pk>[0-9]+)$', charity.views.ClientDetail.as_view(), name='client-detail'),
 
-    url(r'^charities/clients/(?P<client_id>[0-9]+)/organisations$', charity.views.OrganisationsByClient.as_view()),
+    url(r'^charities/clients/(?P<code>[a-z]+)/organisations$', charity.views.OrganisationsByClient.as_view()),
 
     url(r'^charities/services$', charity.views.ServiceList.as_view()),
     url(r'^charities/services/(?P<pk>[0-9]+)$', charity.views.ServiceDetail.as_view(), name='service-detail'),
