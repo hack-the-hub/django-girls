@@ -4,11 +4,11 @@ from django.db import models
 
 class Organisation(models.Model):
     """An entity which offers charitable services"""
-    charity_id = models.CharField(max_length=50, help="Charity ID",
+    charity_id = models.CharField(max_length=50, help_text="Charity ID",
                     unique=True, default='')
-    name = models.CharField(max_length=50, help="Name of the Organisation")
-    registered = models.DateField(help="Date Charity was registered")
-    address = models.TextField(help="Public address")
+    name = models.CharField(max_length=50, help_text="Name of the Organisation")
+    registered = models.DateField(help_text="Date Charity was registered")
+    address = models.TextField(help_text="Public address")
     website = models.CharField(max_length=255, default='')
     email = models.CharField(max_length=255, default='')
     phone = models.CharField(max_length=255, default='')
@@ -23,7 +23,7 @@ class Client(models.Model):
     description = models.CharField(max_length=100)
 
 
-class OrganisationClient(models.Models):
+class OrganisationClient(models.Model):
     """Mapping table of Organisation to Client Types"""
     organisation = models.ForeignKey(Organisation)
     client = models.ForeignKey(Client)
@@ -44,7 +44,7 @@ class OrganisationService(models.Model):
     service = models.ForeignKey(Service)
 
     class Meta:
-        unique_together = (("organinsation", "service"), )
+        unique_together = (("organisation", "service"), )
 
 
 class Classification(models.Model):
