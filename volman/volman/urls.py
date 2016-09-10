@@ -23,8 +23,12 @@ import volunteer.views
 urlpatterns = [
     url(r'^charities/organisations$', charity.views.OrganisationList.as_view()),
     url(r'^charities/organisations/(?P<charity_id>[0-9]+)$', charity.views.OrganisationDetail.as_view(), name='organisation-detail'),
+
     url(r'^charities/clients$', charity.views.ClientList.as_view()),
     url(r'^charities/clients/(?P<pk>[0-9]+)$', charity.views.ClientDetail.as_view(), name='client-detail'),
+
+    url(r'^charities/clients/(?P<client_id>[0-9]+)/organisations$', charity.views.OrganisationsByClient.as_view()),
+
     url(r'^charities/services$', charity.views.ServiceList.as_view()),
     url(r'^charities/services/(?P<pk>[0-9]+)$', charity.views.ServiceDetail.as_view(), name='service-detail'),
     url(r'^charities/classifications$', charity.views.ClassificationList.as_view()),

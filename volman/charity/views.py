@@ -20,9 +20,16 @@ class ClientList(generics.ListCreateAPIView):
 
 
 class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
-    lookup_field = 'code'
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+
+
+class OrganisationsByClient(generics.ListAPIView):
+    serializer_class = OrganisationSerializer
+
+    def get_queryset(self):
+        client = self.kwargs['client_id']
+        return Organisation.objects.filter(clients__id=client)
 
 
 class ClassificationList(generics.ListCreateAPIView):
@@ -43,3 +50,5 @@ class ServiceList(generics.ListCreateAPIView):
 class ServiceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+
+

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Classification, Client, Organisation, Service
+from .models import Classification, Client, Followers, Organisation, Service
 
 
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,3 +37,9 @@ class OrganisationSerializer(serializers.HyperlinkedModelSerializer):
         model = Organisation
         fields = '__all__'
 
+
+class OrganisationFollowerSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Followers
+        fields = ('volunteer', )
