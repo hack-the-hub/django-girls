@@ -1,4 +1,4 @@
-# django-girls
+# volunteer management
 
 ## Pre Setup
 
